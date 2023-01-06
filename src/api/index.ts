@@ -1,14 +1,14 @@
 import { useRequest } from '@/utils/request'
 
 export interface LoginParams {
-  uscc: string
+  username: string
   password: string
 }
 
 export interface LoginRes {
-  user_id: number
+  userId: number
   category: number
-  user_name: string
+  username: string
   token: string
 }
 export function useLogin() {
@@ -23,7 +23,7 @@ export function useLogin() {
 
 export function changePwd() {
   return useRequest(
-    '/user/modify-password/enterprise',
+    '/user/modify-password',
     {
       method: 'post',
     },

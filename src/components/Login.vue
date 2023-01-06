@@ -7,11 +7,11 @@ import { encryptPwd } from '@/utils/cipher'
 const showLogin = ref(false)
 const formRef = ref<FormInst>()
 const formData = ref<LoginParams>({
-  uscc: '', // 123456
+  username: '', // 123456
   password: '', // 345678
 })
 const rules: Record<string, FormItemRule[]> = {
-  uscc: [
+  username: [
     {
       required: true,
       trigger: 'blur',
@@ -32,7 +32,7 @@ async function handleSubmit() {
   await formRef.value?.validate()
   await login({
     data: {
-      uscc: formData.value.uscc,
+      uscc: formData.value.username,
       password: encryptPwd(formData.value.password),
     },
   })
@@ -44,7 +44,7 @@ async function handleSubmit() {
 function resetForm() {
   formRef.value?.restoreValidation()
   formData.value = {
-    uscc: '',
+    username: '',
     password: '',
   }
 }
@@ -79,9 +79,9 @@ function resetForm() {
             :rules="rules"
             require-mark-placement="left"
           >
-            <NFormItem label="账号" path="uscc">
+            <NFormItem label="账号" path="username">
               <NInput
-                v-model:value="formData.uscc"
+                v-model:value="formData.username"
                 clearable
                 maxlength="18"
                 placeholder="请填写账号"
